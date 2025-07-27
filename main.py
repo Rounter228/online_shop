@@ -30,3 +30,17 @@ CREATE TABLE IF NOT EXISTS orders(
     FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 )''')
+
+
+while True:
+    print("0. Exit")
+    print("1. Add product")
+    num = int(input("Enter your choice: "))
+    if num == 0:
+        break
+    elif num == 1:
+        name = str(input("Enter product name: "))
+        category = str(input("Enter product category: "))
+        price = int(input("Enter product price: "))
+        cursor.execute("INSERT INTO products (name, category, price) VALUES (?, ?, ?)", (name, category, price))
+        conn.commit()
